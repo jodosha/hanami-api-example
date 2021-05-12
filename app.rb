@@ -12,10 +12,6 @@ end
 class MyApi < Hanami::API
   extend Hanami::API::Container
 
-  configure do |config|
-    config.root Pathname.new(Dir.pwd)
-  end
-
   settings do
     key :database_url, Types::String.constrained(filled: true)
   end
