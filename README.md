@@ -1,15 +1,12 @@
 # MyApi
 
-Example `hanami-api` app with `dry-system`
+Example `hanami-api` app
 
 ## Prerequisites
 
-  * Ruby 3+
-  * Redis
+  * Docker
 
 ## How to run
 
   1. Clone this repository
-  2. Run `bundle install`
-  3. Start Redis
-  4. Start the server via `bundle exec rackup`
+  2. Run `docker-compose up`

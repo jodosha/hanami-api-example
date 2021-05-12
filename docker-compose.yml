@@ -1,0 +1,13 @@
+redis:
+  image: redis
+  ports:
+    - "6379"
+web:
+  build: .
+  volumes:
+    - .:/app
+  ports:
+    - "2300:2300"
+  command: bundle exec rackup -o 0.0.0.0 -p 2300
+  links:
+    - redis

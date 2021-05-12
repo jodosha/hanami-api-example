@@ -2,29 +2,16 @@
 
 require "hanami/api"
 require "hanami/api/container"
-
-class Foo
-  def call(arg)
-    arg.to_s.upcase
-  end
-end
+require "redis"
 
 class MyApi < Hanami::API
   extend Hanami::API::Container
 
-  settings do
-    key :database_url, Types::String.constrained(filled: true)
-  end
-
-  register "foo" do
-    Foo.new
+  register "database" do
+    Redis.new(host: ENV["REDIS_PORT_6379_TCP_ADDR"], port: ENV["REDIS_PORT_6379_TCP_PORT"])
   end
 
   root do
-    foo.call("hello")
-  end
-
-  get "/keys" do
     database.keys.join(", ")
   end
 end
